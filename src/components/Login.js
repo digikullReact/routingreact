@@ -1,5 +1,6 @@
 import React ,{useState} from 'react'
 import { Form,Button,Row,Col } from 'react-bootstrap'
+import axios from 'axios'
 
 
 
@@ -13,6 +14,20 @@ function Login() {
 
 const handleChange=(event)=>{
   setState({...state,[event.target.name]:event.target.value})
+
+}
+
+const login=()=>{
+
+  axios.post("https://ancient-bastion-78867.herokuapp.com/api/login",state).then(response=>{
+    console.log(response)
+
+  }).catch(err=>{
+
+    console.log(err);
+  })
+
+
 
 }
 
@@ -39,8 +54,8 @@ const handleChange=(event)=>{
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
     <Form.Check type="checkbox" label="Check me out" />
   </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
+  <Button variant="primary" type="button" onClick={login}>
+    Login
   </Button>
 </Form>
 

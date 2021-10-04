@@ -9,17 +9,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-const user=[
-    {
-      username:"user",
+const user={
+      email:"user",
       password:"1234"
-    },
+    }
     
-  ]
+  
 
 app.get("/api/data",(req,res)=>{
 
-    res.json(arr);
+    res.json(user);
  
 
  //  --->Db operatio
@@ -35,20 +34,20 @@ app.post("/api/login",(req,res)=>{
 
     console.log(req.body);
 
-    res.json({status:true});
+    if(req.body.email===user.email && req.body.password===user.password)
+  {
+    res.json({msg:"Success",login :true});
+
+  }
+  else{
+    res.json({msg:"Failed",login :false});
+
+  }
 
 })
 
 
-app.post("/api/addRecord",(req,res)=>{
 
-  arr.push(req.body);
-
-  res.json({msg:"Success"});
-
-
-
-})
 
 const port =process.env.PORT || 8080
 app.listen(port,()=>{
