@@ -11,27 +11,44 @@ import Home from './components/Home';
 import Login from './components/Login';
 
 import Header from './components/Header';
+import Profile from './components/Profile';
+import Protectedroutes from './components/Auth/Protectedroutes';
 
-function App() {
+function App(props) {
+
+
+  const data="something"
   return (
+    <>
+   
     <Router>
-
-      <Header/>
+    <Header/>
+     
     <div>
  <Switch>
-        <Route exact path="/">
-        
+      
+      
+      <Route exact path="/">
         <Home/>
         </Route>
 
-        <Route exact path="/login">
+        {/**
+         * 
+         *         <Route exact path="/login"  component={()=><Login   />} />
+
+         */}
+       <Protectedroutes exact path="/profile"  component={()=><Profile   />} />
+
         
-        <Login/>
+       
+        <Route exact path="/login">
+        <Login />
         </Route>
        
       </Switch>
     </div>
   </Router>
+  </>
   );
 }
 

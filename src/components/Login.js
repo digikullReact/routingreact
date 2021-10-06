@@ -1,10 +1,14 @@
 import React ,{useState} from 'react'
 import { Form,Button,Row,Col } from 'react-bootstrap'
 import axios from 'axios'
+import { useHistory } from 'react-router';
 
 
 
-function Login() {
+function Login(props) {
+
+  const aaaa=useHistory();
+  console.log(props);
   const [state,setState]=useState({
     email:"",
     password:""
@@ -19,8 +23,19 @@ const handleChange=(event)=>{
 
 const login=()=>{
 
+
+
   axios.post("https://ancient-bastion-78867.herokuapp.com/api/login",state).then(response=>{
-    console.log(response)
+  if(response["data"].login)
+  {
+    localStorage.setItem("token","Loggedin")
+    aaaa.push("/profile")
+
+    //  to redirect the user to profile page   
+  }
+  else{
+    alert("Wrong Username Or Password")
+  }
 
   }).catch(err=>{
 
