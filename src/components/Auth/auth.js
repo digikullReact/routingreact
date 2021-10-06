@@ -25,10 +25,7 @@ if(!token)
 else{
 
     //let decoded = jwt_decode(token);
-
-
-
-      return true;
+return true;
 }
 
 
@@ -37,13 +34,6 @@ else{
 }
 
 
-checkRole(expectedRole)
-{
-if (localStorage.getItem("role")==expectedRole) {
-    return true;
-}
-return false;
-}
 }
 
 export default new Auth();
